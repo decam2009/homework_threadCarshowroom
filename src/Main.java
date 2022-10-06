@@ -4,16 +4,15 @@ import java.util.List;
 public class Main {
 
     private static final int MAXCARS = 5;
-    private static final int SLEEPTIME = 0;
-    private static List<Integer> showRoom = new ArrayList<>();
+    private static final int SLEEPTIME = 2000;
+    private static final List<Integer> showRoom = new ArrayList<>();
 
     public static void main(String[] args) {
 
-        for (int i = 0; i < MAXCARS; i++) {
-            Customer customer = new Customer(i);
 
-            new Thread(() -> {
-
+        new Thread(() -> {
+            for (int i = 0; i <= MAXCARS; i++) {
+                Customer customer = new Customer(i);
                 synchronized (showRoom) {
                     customer.cameIn();
                     if (showRoom.isEmpty()) {
@@ -27,13 +26,14 @@ public class Main {
                     customer.boughtCar();
                     showRoom.remove(0);
                 }
-            }).start();
+            }
+        }).start();
 
-            new Thread(() -> {
+        new Thread(() -> {
+            for (int i = 0; i <= MAXCARS; i++) {
                 Producer producer = new Producer("Toyota");
                 synchronized (showRoom) {
-                    producer.producedCar();
-                    showRoom.add(1);
+                    showRoom.add(producer.producedCar());
                     showRoom.notify();
                 }
                 try {
@@ -41,7 +41,7 @@ public class Main {
                 } catch (InterruptedException e) {
                     return;
                 }
-            }).start();
-        }
+            }
+        }).start();
     }
 }

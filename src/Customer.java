@@ -1,29 +1,29 @@
 public class Customer {
 
-    int name;
+    private int customerName;
 
     public void cameIn() {
-        System.out.println("Покупатель " + name + " зашел в автосалон");
+        System.out.println("Покупатель " + customerName + " зашел в автосалон");
     }
 
     public void boughtCar() {
-        System.out.println("Покупатель " + name + " уехал на новеньком авто");
+        System.out.println("Покупатель " + customerName + " уехал на новеньком авто");
     }
 
-    public int getName() {
-        return name;
+    public int getCustomerName() {
+        return customerName;
     }
 
-    public void setName(int name) {
-        this.name = name;
+    public void setCustomerName(int customerName) {
+        this.customerName = customerName;
     }
 
     @Override
     public String toString() {
-        return "name = " + name;
+        return "name = " + customerName;
     }
 
     public Customer(int name) {
-        this.name = name;
+        this.customerName = name;
     }
 }

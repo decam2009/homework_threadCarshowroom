@@ -1,11 +1,10 @@
 public class Producer {
-    public String carName;
+    private String carName;
+    private int carCount = 0;
 
-    public int carCounter = 0;
-
-    public void producedCar() {
+    public int producedCar() {
         System.out.printf("Производитель %s выпустил 1 авто \n", carName);
-        carCounter++;
+        return carCount++;
     }
 
     public Producer(String carName) {
